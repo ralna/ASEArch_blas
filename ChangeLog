@@ -1,0 +1,13 @@
+2013-01-09  Jonathan Hogg <jonathan.hogg@stfc.ac.uk>
+Version 1.0.0
+   * DTRSV: Add support for single precision.
+	         Add support for upper-triangular operations.
+				Fix NaN bug in upper triangle.
+				Numerous small bug fixes and performance optimizations.
+	* DGEMV: Add support for single precision.
+
+2012-07-04  Jonathan Hogg <jonathan.hogg@stfc.ac.uk>
+Initial release. Version 0.9.0
+   * DTRSV: Support for lower triangular variants only.
+   * DGEMV: Slightly lower performance than CUBLAS.
+            Recommend use of CUBLAS instead.

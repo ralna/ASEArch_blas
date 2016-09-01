@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{fullpage}
+\begin{document}
+
+\title{ASEArch BLAS API}
+\author{Jonathan Hogg, STFC}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+The ASEArch present a subset of the full BLAS functionality that offers
+alternative or improved versions of those routines offered by the CUBLAS
+library.
+
+\noindent
+At present only the \texttt{\_trsv} triangular solve routine offers a
+significant benefit from usage, though we do also provide source code for
+\texttt{\_gemv}.
+
+\section{Usage}
+To use the ASEArch blas, you should \texttt{\#include "ASEArch\_blas.h"}
+and link against \texttt{libASEArch\_blas.a}.
+
+\section{Enumerated types}
+
+\begin{verbatim}
+   enum ASEArch_trans {
+      ASEARCH_TRANS,
+      ASEARCH_NONTRANS,
+   };
+\end{verbatim}
+
+\begin{verbatim}
+   enum ASEArch_uplo {
+      ASEARCH_UPR,
+      ASEARCH_LWR,
+   };
+\end{verbatim}
+
+\begin{verbatim}
+   enum ASEArch_diag {
+      ASEARCH_UNIT,
+      ASEARCH_NONUNIT,
+   };
+\end{verbatim}
+
+\section{Callable subroutines (host)}
+\subsection{\texttt{\_gemv}: Matrix-vector multiply}
+\begin{verbatim}
+void ASEArch_dgemv(enum ASEArch_trans trans, int m, int n, double alpha,
+      const double a[], int lda, const double x[], int incx, double beta,
+      double y[], int incy);
+\end{verbatim}
+
+\noindent
+Performs the operation $y \leftarrow \beta y + \alpha Ax$ or $y\leftarrow \beta y + \alpha A^Tx$.
+
+\noindent
+\textbf{Note:} At present outperformed by CUBLAS. Use CUBLAS instead.
+
+\subsection{\texttt{\_trsv}: Triangular solve}
+\begin{verbatim}
+void ASEArch_dtrsv(enum ASEArch_uplo uplo, enum ASEArch_trans trans,
+      enum ASEArch_diag diag, int n, const double a[], int lda, double x[],
+      int incx);
+\end{verbatim}
+
+\noindent
+Solves one of the following equations for $x$:
+\begin{itemize}
+   \item $Lx = b$
+   \item $L^Tx = b$
+   \item $Ux = b$
+   \item $U^Tx = b$
+\end{itemize}
+The diagonal of $L$ or $U$ may be considered as either Unit or Non-unit.
+
+\noindent
+\textbf{Note:} At present only lower triangular version is implemented.
+
+\section{Callable routines (device)}
+At present device routines are undocumented and subject to change.
+
+\end{document}
