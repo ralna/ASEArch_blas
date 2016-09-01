@@ -1,4 +1,4 @@
-# ASEArch: The CCP in Advanced Software for Emerging Architectures
+## ASEArch: The CCP in Advanced Software for Emerging Architectures
 
 ASEArch is a Collabrative Computational Project funded by the UK's
 Engineering and Physical Sciences Research Council (EPSRC).
